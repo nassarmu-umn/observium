@@ -5,10 +5,6 @@ defaults:  # Used for any hierarchy level that omits these keys.
   datadir: data         # This path is relative to hiera.yaml's directory.
   data_hash: yaml_data  # Use the built-in YAML backend.
 
-lookup_options:
-  observium::required_packages:
-    merge: unique
-
 hierarchy:
   - name: "osfamily"
     paths:
