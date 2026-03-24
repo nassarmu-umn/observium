@@ -36,6 +36,8 @@ class observium::install {
     extract_path => '/opt',
     creates      => '/opt/observium/VERSION',
     cleanup      => false,
+    user         => $apache_user,
+    group        => $apache_user,
     require      => File['/opt/observium'],
   }
 
