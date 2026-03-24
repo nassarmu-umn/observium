@@ -15,7 +15,7 @@ class observium::packages {
           # Running on rhel 7
           $required_packages = lookup('observium::required_packages', Array)
           stdlib::ensure_packages(
-            [$required_packages],
+            $required_packages,
             {
               require => Class['observium::yum'],
             }
@@ -25,7 +25,7 @@ class observium::packages {
           # Running on rhel 8
           $required_packages = lookup('observium::required_packages', Array)
           stdlib::ensure_packages(
-            [$required_packages],
+            $required_packages,
             {
               require => Class['observium::yum'],
               before  => Exec['/sbin/alternatives --set python /usr/bin/python3'],
@@ -41,7 +41,7 @@ class observium::packages {
           # Running on rhel 9
           $required_packages = lookup('observium::required_packages', Array)
           stdlib::ensure_packages(
-            [$required_packages],
+            $required_packages,
             {
               require => Class['observium::yum'],
             }
@@ -54,7 +54,7 @@ class observium::packages {
       # Running on Ubuntu
       if $facts['os']['name'] == 'Ubuntu' {
         $required_packages = lookup('observium::required_packages', Array)
-        stdlib::ensure_packages([$required_packages])
+        stdlib::ensure_packages($required_packages)
       } else {
         fail('Unsupported operating system family, bailing out!!')
       }
