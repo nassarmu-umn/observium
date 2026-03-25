@@ -19,6 +19,8 @@ class observium::install {
 
   file { '/opt/observium':
     ensure => directory,
+    owner  => $apache_user,
+    group  => $apache_user,
   }
 
   file { '/opt/observium/rrd':
