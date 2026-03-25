@@ -10,23 +10,18 @@ class observium::install {
   $apache_user = lookup(observium::apache_user, String)
 
   # Create folder structure
-  file {
-    default:
-      owner => 'root',
-      group => 'root',
-      mode  => '0775',
-  }
-
   file { '/opt/observium':
     ensure => directory,
-#    owner  => $apache_user,
-#    group  => $apache_user,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0775',
   }
 
   file { '/opt/observium/rrd':
     ensure  => directory,
     owner   => $apache_user,
     group   => $apache_user,
+    mode    => '0775',
     require => File['/opt/observium'],
   }
 
@@ -38,8 +33,8 @@ class observium::install {
     extract_path => '/opt',
     creates      => '/opt/observium/VERSION',
     cleanup      => false,
-#    user         => $apache_user,
-#    group        => $apache_user,
+    user         => 'root',
+    group        => 'root',
     require      => File['/opt/observium'],
   }
 
@@ -47,6 +42,7 @@ class observium::install {
     ensure  => directory,
     owner   => $apache_user,
     group   => $apache_user,
+    mode    => '0775',
     require => File['/opt/observium'],
   }
 
