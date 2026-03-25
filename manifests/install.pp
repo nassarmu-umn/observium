@@ -19,8 +19,8 @@ class observium::install {
 
   file { '/opt/observium':
     ensure => directory,
-    owner  => $apache_user,
-    group  => $apache_user,
+#    owner  => $apache_user,
+#    group  => $apache_user,
   }
 
   file { '/opt/observium/rrd':
@@ -38,8 +38,8 @@ class observium::install {
     extract_path => '/opt',
     creates      => '/opt/observium/VERSION',
     cleanup      => false,
-    user         => $apache_user,
-    group        => $apache_user,
+#    user         => $apache_user,
+#    group        => $apache_user,
     require      => File['/opt/observium'],
   }
 
