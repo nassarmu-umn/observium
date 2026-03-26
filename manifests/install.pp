@@ -27,15 +27,16 @@ class observium::install {
 
   # Extract the tarball
   archive { $observium::installer_name:
-    path         => "/opt/${observium::installer_name}",
-    source       => "${observium::download_url}${observium::installer_name}",
-    extract      => true,
-    extract_path => '/opt',
-    creates      => '/opt/observium/VERSION',
-    cleanup      => false,
-    user         => 'root',
-    group        => 'root',
-    require      => File['/opt/observium'],
+    path          => "/opt/${observium::installer_name}",
+    source        => "${observium::download_url}${observium::installer_name}",
+    extract       => true,
+    extract_path  => '/opt',
+    extract_flags => {
+      'tar' => '--no-same-user -xf',
+    },
+    creates       => '/opt/observium/VERSION',
+    cleanup       => false,
+    require       => File['/opt/observium'],
   }
 
   file { '/opt/observium/logs':
