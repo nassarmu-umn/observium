@@ -20,7 +20,6 @@ class observium::install {
     },
     creates       => '/opt/observium/VERSION',
     cleanup       => false,
-    require       => File['/opt/observium'],
   }
 
   file { '/opt/observium/rrd':
